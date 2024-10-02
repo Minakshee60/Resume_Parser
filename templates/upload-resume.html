@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Link to the external CSS file in the static folder -->
+<link rel="stylesheet" href="{% static 'upload.css' %}" type="text/css">
+
+<div class="main">
+    <h2>Upload Your Resume</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Resume</button>
+    </form>
+</div>
+{% endblock %}

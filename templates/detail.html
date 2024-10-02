@@ -1,0 +1,91 @@
+
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        .resume-form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .resume-form input[type="text"],
+        .resume-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .resume-form textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .resume-form input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .resume-form input[type="submit"]:hover {
+            background-color: navy;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Resume Data</h1>
+    <form class="resume-form" action="#" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ resume.name }}" required>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ resume.phone_number }}" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="{{ resume.email }}" required>
+
+        <label for="education">Education:</label>
+        <textarea id="education" name="education" required>{{ resume.education }}</textarea>
+
+        <label for="work_experience">Work Experience:</label>
+        <textarea id="work_experience" name="work_experience" required>{{ resume.work_experience }}</textarea>
+
+        <label for="technologies">Technologies:</label>
+        <textarea id="technologies" name="technologies" required>{{ resume.technologies }}</textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+{% endblock %}
+

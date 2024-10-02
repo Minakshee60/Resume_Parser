@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Upload and Display</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Flash messages for success or warning -->
+        {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Form for uploading resumes -->
+        <h2>Upload Resumes</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        <!-- Displaying the list of uploaded resumes -->
+        {% if resumes %}
+        <h2 class="mt-5">Uploaded Resumes</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Education</th>
+                    <th>Skills</th>
+                    <th>Company Name</th>
+                    <th>College Name</th>
+                    <th>Designation</th>
+                    <th>Total Experience</th>
+                    <th>Uploaded On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resume in resumes %}
+                <tr>
+                    <td>{{ resume.name }}</td>
+                    <td>{{ resume.email }}</td>
+                    <td>{{ resume.mobile_number }}</td>
+                    <td>{{ resume.education }}</td>
+                    <td>{{ resume.skills }}</td>
+                    <td>{{ resume.company_name }}</td>
+                    <td>{{ resume.college_name }}</td>
+                    <td>{{ resume.designation }}</td>
+                    <td>{{ resume.total_experience }}</td>
+                    <td>{{ resume.uploaded_on }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No resumes uploaded yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
